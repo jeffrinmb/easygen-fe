@@ -46,6 +46,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setError(null);
     try {
       const loggedInUser = await authService.signIn(credentials);
+      console.log("--------------------------");
+      console.log(loggedInUser);
       setUser(loggedInUser);
     } catch (err) {
       setError((err as Error).message);

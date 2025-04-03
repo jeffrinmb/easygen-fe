@@ -4,8 +4,8 @@ export const API_BASE_URL =
 export const AUTH_ENDPOINTS = {
   SIGNUP: "/auth/signup",
   SIGNIN: "/auth/signin",
-  PROFILE: "/auth/profile",
-  LOGOUT: "/auth/logout",
+  PROFILE: "/auth/user",
+  LOGOUT: "/auth/signout",
 };
 
 export const REQUEST_TIMEOUT = 10000;

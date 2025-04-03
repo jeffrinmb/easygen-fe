@@ -48,10 +48,11 @@ export const authService = {
   signUp: async (userData: User): Promise<User> => {
     try {
       const response = await api.post(AUTH_ENDPOINTS.SIGNUP, userData);
-      if (response.data.token) {
-        setAuthToken(response.data.token);
+      console.log(response);
+      if (response?.data?.result?.tokens?.accessToken) {
+        setAuthToken(response.data.result.tokens.accessToken);
       }
-      return response.data.user;
+      return response?.data?.result?.user;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response?.data?.message || "Failed to sign up");
@@ -61,10 +62,11 @@ export const authService = {
   signIn: async (credentials: LoginCredentials): Promise<User> => {
     try {
       const response = await api.post(AUTH_ENDPOINTS.SIGNIN, credentials);
-      if (response.data.token) {
-        setAuthToken(response.data.token);
+      console.log(response);
+      if (response?.data?.result?.tokens?.accessToken) {
+        setAuthToken(response.data.result.tokens.accessToken);
       }
-      return response.data.user;
+      return response?.data?.result?.user;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(
@@ -80,7 +82,8 @@ export const authService = {
 
     try {
       const response = await api.get(AUTH_ENDPOINTS.PROFILE);
-      return response.data.user;
+      console.log(response);
+      return response.data.result;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
         removeAuthToken();
